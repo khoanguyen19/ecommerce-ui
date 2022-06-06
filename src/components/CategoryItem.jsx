@@ -1,23 +1,29 @@
-import styled from 'styled-components'
-import { mobile } from '../responsive'
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   flex: 1;
   width: 100%;
   height: 70vh;
-  margin: 0 10px;
   position: relative;
+  border-radius: 15px;
+  overflow: hidden;
 
-  ${mobile({ margin: '5px 0' })}
-`
+  &:not(:last-child) {
+    margin-right: 30px;
+  }
+
+  ${mobile({ margin: "5px 0" })}
+`;
 
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
 
-  ${mobile({ height: '30vh' })}
-`
+  ${mobile({ height: "30vh" })}
+`;
 
 const Info = styled.div`
   position: absolute;
@@ -29,13 +35,13 @@ const Info = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const Title = styled.h2`
   font-size: 28px;
   color: #fff;
   margin-bottom: 22px;
-`
+`;
 
 const Button = styled.button`
   padding: 10px 12px;
@@ -51,18 +57,20 @@ const Button = styled.button`
   &:hover {
     opacity: 1;
   }
-`
+`;
 
 const CategoryItem = ({ item }) => {
   return (
     <Container>
-      <Image src={item.img}/>
-      <Info>
-        <Title>{item.title}</Title>
-        <Button>Shop now</Button>
-      </Info>
+      <Link to={`/products/${item.category}`}>
+        <Image src={item.img} />
+        <Info>
+          <Title>{item.title}</Title>
+          <Button>Shop now</Button>
+        </Info>
+      </Link>
     </Container>
-  )
-}
+  );
+};
 
-export default CategoryItem
+export default CategoryItem;

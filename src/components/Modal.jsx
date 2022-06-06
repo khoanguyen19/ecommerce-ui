@@ -1,9 +1,11 @@
-import { useRef, useCallback, useEffect } from 'react'
-import { useSpring, animated } from 'react-spring'
-import styled from 'styled-components'
-import ModalRegister from './ModalRegister'
-import ModalLogin from './ModalLogin'
-import { mobile } from '../responsive'
+import { useRef, useCallback, useEffect } from "react";
+import { useSpring, animated } from "react-spring";
+import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import ModalRegister from "./ModalRegister";
+import ModalLogin from "./ModalLogin";
+import { mobile } from "../responsive";
+import { loginCancel } from "../redux/userRedux";
 
 const Container = styled.div`
   width: 100%;
@@ -18,7 +20,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 10;
-`
+`;
 
 const AnimatedModal = styled(animated.div)`
   display: flex;
@@ -26,54 +28,64 @@ const AnimatedModal = styled(animated.div)`
   align-items: center;
   width: 30%;
 
-  ${mobile({ width: '80%' })}
-`
+  ${mobile({ width: "80%" })}
+`;
 
 const Modal = ({ showModal, setShowModal, type }) => {
-  const modalRef = useRef()
+  const modalRef = useRef();
+
+  const dispatch = useDispatch();
 
   const animation = useSpring({
     config: {
-      duration: 250
+      duration: 250,
     },
     opacity: showModal ? 1 : 0,
-    transform: showModal ? 'translateY(0%)' : 'translateY(-100%)',
-  })
+    transform: showModal ? "translateY(0%)" : "translateY(-100%)",
+  });
 
   const closeModal = () => {
-    setShowModal(false)
-  }
+    setShowModal(false);
+    dispatch(loginCancel());
+  };
 
-  const handleCloseModal = e => {
-    if(modalRef.current === e.target) {
-      closeModal()
+  const handleCloseModal = (e) => {
+    if (modalRef.current === e.target) {
+      closeModal();
     }
-  }
+  };
 
-  const keyPress = useCallback(e => {
-    if(e.key === 'Escape' && showModal) {
-      setShowModal(false)
-    }
-  }, [showModal, setShowModal])
+  const keyPress = useCallback(
+    (e) => {
+      if (e.key === "Escape" && showModal) {
+        setShowModal(false);
+      }
+    },
+    [showModal, setShowModal]
+  );
 
   useEffect(() => {
-    document.addEventListener('keydown', keyPress)
+    document.addEventListener("keydown", keyPress);
     return () => {
-      document.removeEventListener('keydown', keyPress)
-    }
-  }, [keyPress])
+      document.removeEventListener("keydown", keyPress);
+    };
+  }, [keyPress]);
 
-  return(
+  return (
     <>
-    {showModal ? (
-      <Container ref={modalRef} onClick={handleCloseModal}>
-        <AnimatedModal style={animation}>
-          {type === 'login' ? <ModalLogin closeModal={closeModal}/> : <ModalRegister closeModal={closeModal}/>}
-        </AnimatedModal>
-      </Container>
-    ): null}
+      {showModal ? (
+        <Container ref={modalRef} onClick={handleCloseModal}>
+          <AnimatedModal style={animation}>
+            {type === "login" ? (
+              <ModalLogin closeModal={closeModal} />
+            ) : (
+              <ModalRegister closeModal={closeModal} />
+            )}
+          </AnimatedModal>
+        </Container>
+      ) : null}
     </>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

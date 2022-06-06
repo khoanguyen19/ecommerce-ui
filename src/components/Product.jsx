@@ -1,8 +1,9 @@
-import styled from 'styled-components'
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
-import { mobile } from '../responsive'
+import styled from "styled-components";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import { mobile } from "../responsive";
+import { Link } from "react-router-dom";
 
 const IconContainer = styled.div`
   width: 100%;
@@ -14,17 +15,16 @@ const IconContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
   opacity: 0;
   transition: all 1s ease-in;
-`
+`;
 const Image = styled.img`
   height: 80%;
   transition: all 0.5s linear;
 
-  ${mobile({ height: '60%' })}
-`
+  ${mobile({ height: "60%" })}
+`;
 
 const Container = styled.div`
   width: 100%;
-  flex: 1;
   min-width: 280px;
   height: 320px;
   background-color: #fcf5f5;
@@ -35,7 +35,7 @@ const Container = styled.div`
   position: relative;
   cursor: pointer;
 
-  &:hover  {
+  &:hover {
     ${IconContainer} {
       opacity: 1;
     }
@@ -45,11 +45,15 @@ const Container = styled.div`
     }
   }
 
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+
   ${mobile({
-    minWidth: '130px',
-    height: '180px'
+    minWidth: "130px",
+    height: "180px",
   })}
-`
+`;
 
 const Icon = styled.div`
   width: 35px;
@@ -66,25 +70,27 @@ const Icon = styled.div`
   &:hover {
     transform: scale(1.1);
   }
-`
+`;
 
 const Product = ({ item }) => {
   return (
     <Container>
-      <Image src={item.img}/>
+      <Image src={item.img} />
       <IconContainer>
         <Icon>
-          <ShoppingCartOutlinedIcon style={{fontSize: '20px'}}/>
+          <ShoppingCartOutlinedIcon style={{ fontSize: "20px" }} />
         </Icon>
+        <Link to={`/product/${item._id}`}>
+          <Icon>
+            <SearchOutlinedIcon style={{ fontSize: "20px" }} />
+          </Icon>
+        </Link>
         <Icon>
-          <SearchOutlinedIcon style={{fontSize: '20px'}}/>
-        </Icon>
-        <Icon>
-          <FavoriteBorderOutlinedIcon style={{fontSize: '20px'}}/>
+          <FavoriteBorderOutlinedIcon style={{ fontSize: "20px" }} />
         </Icon>
       </IconContainer>
     </Container>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;

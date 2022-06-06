@@ -1,27 +1,27 @@
-import styled from 'styled-components'
-import { categories } from '../data'
-import CategoryItem from './CategoryItem'
-import { mobile } from '../responsive'
+import styled from "styled-components";
+import { categories } from "../data";
+import CategoryItem from "./CategoryItem";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   width: 100%;
   display: flex;
-  margin: 80px 0;
+  margin-bottom: 80px;
 
   ${mobile({
-    margin: '30px 0',
-    flexDirection: 'column'
+    margin: "30px 0",
+    flexDirection: "column",
   })}
-`
+`;
 
 const Categories = () => {
   return (
     <Container>
-      {categories.map(item => (
-        <CategoryItem key={item.id} item={item}/>
+      {categories.map((item) => (
+        <CategoryItem key={item.id} item={item} />
       ))}
     </Container>
-  )
-}
+  );
+};
 
-export default Categories
+export default Categories;

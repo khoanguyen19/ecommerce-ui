@@ -22,13 +22,13 @@ const Home = () => {
   return (
     <>
       <Announcement />
+      <Navbar />
+      <Slider />
       <Container>
-        <Navbar />
-        <Slider />
         <Text>Featured Categories</Text>
         <Categories />
         <Text>Best-seller!</Text>
-        <Products category={""} />
+        <Products home={true} category={""} />
         <Newsletter />
         <Footer />
       </Container>

@@ -19,11 +19,10 @@ const Arrow = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50px;
-  background-color: #afa7a7;
+  /* background-color: #afa7a7; */
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0.5;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -40,16 +39,15 @@ const Arrow = styled.div`
 `;
 
 const Wrapper = styled.div`
-  height: 100%;
   display: flex;
+  height: 100%;
   transition: all 1.5s ease-in-out;
   transform: translateX(${(props) => props.slideIndex * -100}vw);
 `;
 
 const Slide = styled.div`
   width: 100vw;
-  height: 100vh;
-  display: flex;
+  height: 90vh;
   flex-shrink: 0;
   position: relative;
 
@@ -57,26 +55,27 @@ const Slide = styled.div`
 `;
 
 const ImageContainer = styled.div`
+  width: 100%;
   height: 100%;
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const Image = styled.img`
-  height: 90%;
-
-  ${mobile({ width: "100%" })}
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  position: absolute;
 `;
 
 const InfoContainer = styled.div`
-  flex: 1;
-  padding: 50px;
+  width: 400px;
+  top: 40%;
+  left: 8%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-size: 18px;
+  position: absolute;
+  z-index: 1;
 
   ${mobile({
     position: "absolute",
@@ -87,40 +86,43 @@ const InfoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 64px;
+  font-size: 42px;
   font-weight: 500;
-  color: #212529;
-
+  color: #fff;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
   ${mobile({
     fontSize: "40px",
     color: "#fff",
     textShadow: "3px 3px 2px #000",
-  })}
+  })};
 `;
 const Desc = styled.p`
-  margin: 50px 0;
+  margin: 20px 0;
+  font-size: 14px;
   font-weight: 400;
+  color: #fff;
+  text-shadow: 0 1.5px 1.5px rgba(0, 0, 0, 0.6);
 
   ${mobile({
     color: "#fff",
     textShadow: "2px 1px 1px #000",
     fontSize: "14px",
     margin: "30px 0",
-  })}
+  })};
 `;
 const Button = styled.button`
-  width: 100px;
-  padding: 10px 12px;
+  width: 140px;
+  padding: 12px 24px;
   font-size: 14px;
-  border-radius: 5px;
-  background-color: #212529;
-  border-color: #212529;
-  color: #fff;
+  background-color: #fff;
+  border: none;
+  color: #1b1b1b;
+  opacity: 0.85;
   cursor: pointer;
   transition: all 0.3s linear;
 
   &:hover {
-    background-color: #000;
+    opacity: 1;
   }
 `;
 
@@ -138,15 +140,17 @@ const Slider = () => {
   return (
     <Container>
       <Arrow direction="next" onClick={() => handleClick("next")}>
-        <ArrowForwardIosIcon style={{ fontSize: 14 }}></ArrowForwardIosIcon>
+        <ArrowForwardIosIcon
+          style={{ fontSize: 40, color: "#fff" }}
+        ></ArrowForwardIosIcon>
       </Arrow>
 
       <Wrapper slideIndex={slideIndex}>
         {slideItems.map((item) => (
           <Slide key={item.id}>
-            <ImageContainer>
-              <Image src={item.img} />
-            </ImageContainer>
+            <ImageContainer
+              style={{ backgroundImage: `url(${item.img})` }}
+            ></ImageContainer>
 
             <InfoContainer>
               <Title>{item.title}</Title>
@@ -158,7 +162,9 @@ const Slider = () => {
       </Wrapper>
 
       <Arrow direction="back" onClick={() => handleClick("back")}>
-        <ArrowBackIosNewIcon style={{ fontSize: 14 }}></ArrowBackIosNewIcon>
+        <ArrowBackIosNewIcon
+          style={{ fontSize: 40, color: "#fff" }}
+        ></ArrowBackIosNewIcon>
       </Arrow>
     </Container>
   );

@@ -40,17 +40,16 @@ const Info = styled.div`
 const Title = styled.h2`
   font-size: 28px;
   color: #fff;
-  margin-bottom: 22px;
+  margin-bottom: 32px;
 `;
 
 const Button = styled.button`
-  padding: 10px 12px;
+  padding: 10px 24px;
   font-size: 14px;
-  border-radius: 5px;
   background-color: #fff;
-  border-color: #fafafa;
-  color: #000;
-  opacity: 0.7;
+  color: #1b1b1b;
+  opacity: 0.85;
+  border: none;
   cursor: pointer;
   transition: all 0.3s linear;
 

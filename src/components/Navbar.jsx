@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Badge from "@mui/material/Badge";
-import SearchIcon from "@mui/icons-material/Search";
+// import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Modal from "./Modal";
 import { mobile } from "../responsive";
@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Container = styled.div`
-  height: 60px;
+  height: 52px;
   padding: 4px;
 
   ${mobile({
@@ -38,30 +38,6 @@ const Language = styled.select`
   border: none;
   outline: none;
   cursor: pointer;
-
-  ${mobile({ display: "none" })}
-`;
-
-const SearchContainer = styled.div`
-  border: 0.5px solid lightGray;
-  display: flex;
-  align-items: center;
-  margin-left: 20px;
-  padding: 5px 8px 5px 10px;
-  border-radius: 5px;
-
-  ${mobile({
-    marginLeft: "0px",
-    padding: 0,
-    border: "none",
-  })}
-`;
-
-const Input = styled.input`
-  border: none;
-  outline: none;
-  font-size: 14px;
-  margin-right: 2px;
 
   ${mobile({ display: "none" })}
 `;
@@ -108,21 +84,17 @@ const MenuItem = styled.div`
 `;
 
 const AvatarWrapper = styled.div`
-  min-width: 120px;
   display: flex;
   align-items: center;
-  background-color: rgba(153, 153, 153, 0.3);
-  padding-left: 20px;
   border-radius: 20px;
   justify-content: space-between;
   /* margin-left: 35px; */
 `;
 
 const Avatar = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  margin-left: 20px;
   border: 2px solid rgba(0, 0, 0, 0.5);
   cursor: pointer;
   transition: all ease 0.3s;
@@ -138,11 +110,6 @@ const Navbar = () => {
 
   const quantity = useSelector((state) => state.cart.cartQuantity);
   const user = useSelector((state) => state.user?.currentUser);
-  // const user = JSON.parse(
-  //   JSON.parse(localStorage.getItem("persist:root"))?.user
-  // )?.currentUser;
-
-  console.log(user);
 
   const handleShowModal = (type) => {
     setShowModal(true);
@@ -157,10 +124,6 @@ const Navbar = () => {
             <option value="en">EN</option>
             <option value="vn">VN</option>
           </Language>
-          <SearchContainer>
-            <Input />
-            <SearchIcon sx={{ fontSize: 18, color: "gray" }} />
-          </SearchContainer>
         </Left>
         <Center>
           <LogoLink to="/">BEAN.</LogoLink>
@@ -182,7 +145,6 @@ const Navbar = () => {
             </>
           ) : (
             <AvatarWrapper>
-              <span>{user.fullname || user.username}</span>
               <Avatar
                 src={
                   user.img ||

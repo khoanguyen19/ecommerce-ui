@@ -7,19 +7,53 @@ import Products from "../components/Products";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Container = styled.div`
   margin: 0 20px;
 `;
 
+const TopContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const Title = styled.h2`
-  margin-top: 20px;
   font-size: 30px;
 
   ${mobile({
     marginTop: "32px",
     fontSize: "24px",
   })}
+`;
+
+const SearchContainer = styled.div`
+  width: 200px;
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 10px;
+  padding: 5px 8px 5px 10px;
+  border: 0.5px solid lightGray;
+  border-radius: 5px;
+
+  ${mobile({
+    marginLeft: "0px",
+    padding: 0,
+    border: "none",
+  })}
+`;
+
+const Input = styled.input`
+  border: none;
+  outline: none;
+  font-size: 14px;
+  margin-right: 2px;
+
+  ${mobile({ display: "none" })}
 `;
 
 const FilterContainer = styled.div`
@@ -66,10 +100,10 @@ const Option = styled.option``;
 const ProductsPage = () => {
   const location = useLocation();
   const category = location.pathname.split("/")[2];
-  console.log(category);
 
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("newest");
+  const [search, setSearch] = useState("");
 
   const handleFilters = (e) => {
     const value = e.target.value;
@@ -92,7 +126,13 @@ const ProductsPage = () => {
       <Announcement />
       <Navbar />
       <Container>
-        <Title>{category.charAt(0).toUpperCase() + category.slice(1)}</Title>
+        <TopContainer>
+          <Title>{category.charAt(0).toUpperCase() + category.slice(1)}</Title>
+          <SearchContainer>
+            <Input onChange={(e) => setSearch(e.target.value)} />
+            <SearchIcon sx={{ fontSize: 18, color: "gray" }} />
+          </SearchContainer>
+        </TopContainer>
         <FilterContainer>
           <Filter>
             <FilterText>Filter Products:</FilterText>
@@ -128,7 +168,12 @@ const ProductsPage = () => {
             </Select>
           </Filter>
         </FilterContainer>
-        <Products category={category} filters={filters} sort={sort} />
+        <Products
+          category={category}
+          filters={filters}
+          sort={sort}
+          search={search}
+        />
       </Container>
       <Newsletter />
       <Footer />

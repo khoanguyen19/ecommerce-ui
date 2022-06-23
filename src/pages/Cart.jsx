@@ -202,6 +202,8 @@ const SummaryButton = styled.button`
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
 
+  const quantity = useSelector((state) => state.cart.cartQuantity);
+
   const [stripeToken, setStipeToken] = useState(null);
   const navigate = useNavigate();
 
@@ -240,7 +242,7 @@ const Cart = () => {
         <Top>
           <TopButton>Continue Shopping</TopButton>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
+            <TopText>Shopping Bag({quantity})</TopText>
             <TopText>Your Wishlist(0)</TopText>
           </TopTexts>
         </Top>

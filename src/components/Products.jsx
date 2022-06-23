@@ -11,9 +11,9 @@ const Container = styled.div`
   grid-column-gap: 10px;
 `;
 
-const Products = ({ category, filters, sort }) => {
-  // const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+const Products = ({ category, filters, home, search, sort }) => {
+  const [currentProducts, setCurrentProducts] = useState([]);
+  // let deepProducts
 
   const dispatch = useDispatch();
 
@@ -22,31 +22,70 @@ const Products = ({ category, filters, sort }) => {
   }, [dispatch]);
 
   const products = useSelector((state) => state.product.products);
-
-  // const filteredProduct = products.filter((p) =>
-  //   p.categories.includes(category)
-  // );
+  console.log(products);
 
   useEffect(() => {
-    setFilteredProducts(
-      filters
-        ? products.filter((item) =>
-            Object.entries(filters).every(([key, value]) =>
-              item[key].includes(value)
-            )
+    setCurrentProducts(products);
+
+    filters &&
+      setCurrentProducts(
+        products.filter((item) =>
+          Object.entries(filters).every(([key, value]) =>
+            item[key].includes(value)
           )
-        : products
-    );
-  }, [filters, products]);
+        )
+      );
+
+    search &&
+      setCurrentProducts(
+        products.filter((item) => item.title.toLowerCase().includes(search))
+      );
+  }, [filters, products, search, sort]);
+
+  useEffect(() => {
+    switch (sort) {
+      case "popular":
+        setCurrentProducts((currentProducts) =>
+          [...currentProducts].sort((a, b) => a.sales - b.sales)
+        );
+        break;
+      case "asc":
+        setCurrentProducts((currentProducts) =>
+          [...currentProducts].sort((a, b) => a.price - b.price)
+        );
+        break;
+      case "desc":
+        setCurrentProducts((currentProducts) =>
+          [...currentProducts].sort((a, b) => b.price - a.price)
+        );
+        break;
+      default:
+        setCurrentProducts((currentProducts) =>
+          [...currentProducts].sort((a, b) => a.updatedAt - b.updatedAt)
+        );
+        break;
+    }
+  }, [sort]);
+
+  console.log(filters);
+
   return (
     <Container>
-      {category
-        ? filteredProducts
-            .filter((p) => p.categories.includes(category))
+      {category !== "all"
+        ? currentProducts
+            .filter(
+              (p) =>
+                p.categories.includes(category) ||
+                p.categories.includes("unisex")
+            )
             .map((item) => <Product item={item} key={item._id} />)
-        : products // Render 8 products at Home page
-            .slice(0, 8)
+        : currentProducts // Render 8 products at Home page
             .map((item) => <Product item={item} key={item._id} />)}
+      {home &&
+        [...currentProducts]
+          .sort((a, b) => a.sales - b.sales)
+          .slice(0, 8)
+          .map((item) => <Product item={item} key={item._id} />)}
     </Container>
   );
 };

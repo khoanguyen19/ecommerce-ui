@@ -1,27 +1,27 @@
 export const slideItems = [
   {
     id: 1,
-    img: "https://lp2.hm.com/hmgoepprod?source=url[https://www2.hm.com/content/dam/divided_s05/mars_2022/5005b/5005b-1x1-fresh-spring-looks.jpg]&scale=size[660]&sink=format[jpeg],quality[80]",
-    title: "FALL - WINTER SALE",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error doloremque cum perferendis ullam, possimus quasi magnam sequi odio ipsum sed!",
+    img: "https://im.uniqlo.com/global-cms/spa/rese891d24535a0c5e5f73e148c729772f7fr.jpg",
+    title: "Essential Styles For Summer",
+    desc: "Play your way!",
   },
   {
     id: 2,
-    img: "https://lp2.hm.com/hmgoepprod?source=url[https://www2.hm.com/content/dam/TOOLBOX/PRE_SEASON/2022_s05/april/TCM5039_1x1.jpg]&scale=size[480]&sink=format[jpeg],quality[80]",
-    title: "ALCYUSISM - NEW ARRIVALS",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error doloremque cum perferendis ullam, possimus quasi magnam sequi odio ipsum sed!",
+    img: "https://im.uniqlo.com/global-cms/spa/res6e0c187a12ab76e0482e156c083ecb58fr.jpg",
+    title: "Must-Have Summer Vacation Styles",
+    desc: "Men's Collection",
   },
   {
     id: 3,
-    img: "https://www.gap.com/Asset_Archive/GPWeb/content/0028/990/140/Assets/VDN/Desk/SM222092_NewArrivals_DESK.jpg",
-    title: "TINDERELLA - A TEE CAN TALK",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error doloremque cum perferendis ullam, possimus quasi magnam sequi odio ipsum sed!",
+    img: "https://im.uniqlo.com/global-cms/spa/res9b38fc42c8006f0292a7c1a30643d33efr.jpg",
+    title: "Vacation-Ready Looks For Summer",
+    desc: "Women's Collection",
   },
   {
     id: 4,
-    img: "https://www.gap.com/Asset_Archive/GPWeb/content/0028/990/140/Assets/VDN/Desk/SM222092_Boys_DESK.jpg",
-    title: "ICHIGO: Ichigo - Ichie",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error doloremque cum perferendis ullam, possimus quasi magnam sequi odio ipsum sed!",
+    img: "https://im.uniqlo.com/global-cms/spa/res1cd31152a73a12302197d90fb36fe6c3fr.jpg",
+    title: "Spend Summer Vacation In Style",
+    desc: "Women's Bottom",
   },
 ];
 
@@ -30,7 +30,7 @@ export const categories = [
     id: 1,
     img: "https://s7d2.scene7.com/is/image/lscoecomm/H122_Levis_AAPI_HP_M-1?fmt=pjpeg&qlt=70,1&resMode=bisharp&wid=450&hei=563&fit=crop,0",
     title: "SHOP ALL",
-    category: "",
+    category: "all",
   },
   {
     id: 2,

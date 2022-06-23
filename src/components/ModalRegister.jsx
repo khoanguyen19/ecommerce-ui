@@ -74,17 +74,10 @@ const CloseButton = styled.button`
 
 const ModalRegister = ({ closeModal }) => {
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
-
-  const handleCanSubmit = () => password === confirmPassword;
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -109,11 +102,7 @@ const ModalRegister = ({ closeModal }) => {
           placeholder="Password"
           type="password"
         />
-        <Input
-          placeholder="Confirm Password"
-          onChange={(e) => handleConfirmPasswordChange(e)}
-          type="password"
-        />
+        <Input placeholder="Confirm Password" type="password" />
         <Agreement>
           By creating an account, I consent to the processing of my personal
           data in accordance with the <b>PRIVACY POLICY</b>

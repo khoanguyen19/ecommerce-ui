@@ -3,12 +3,18 @@ import Product from "./Product";
 import { useEffect, useState } from "react";
 import { getProducts } from "../redux/callApis";
 import { useDispatch, useSelector } from "react-redux";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-column-gap: 10px;
+
+  ${mobile({
+    "grid-template-columns": "1fr 1fr",
+    gridColumnGap: "6px",
+  })}
 `;
 
 const Products = ({ category, filters, home, search, sort }) => {

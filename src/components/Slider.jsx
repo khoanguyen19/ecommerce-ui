@@ -64,6 +64,8 @@ const ImageContainer = styled.div`
   background-position: top;
   background-size: cover;
   position: absolute;
+
+  ${mobile({ top: "20px" })}
 `;
 
 const InfoContainer = styled.div`
